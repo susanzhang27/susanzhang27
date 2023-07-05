@@ -8,7 +8,7 @@ jobs:
           VARIABLE: ${{ vars.MY_VARIABLE }}
         run: |
           echo "VARIABLE=$VARIABLE"
-          if [[ "$VARIABLE" != 'hello world' ]]; then
+          if: [[ "$VARIABLE" != 'hello world' ]]; then
             echo 'Unexpected variable value'
             exit 1
           fi
