@@ -2,7 +2,7 @@ name: variable test
 on: push
 jobs:
   build:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - env:
           VARIABLE: ${{ vars.MY_VARIABLE }}
