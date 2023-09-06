@@ -1,5 +1,6 @@
 name: public action testing for file changes 
-on: push
+on: 
+  workflow_dispatch:
 jobs:
   changes:
     runs-on: ubuntu-latest
