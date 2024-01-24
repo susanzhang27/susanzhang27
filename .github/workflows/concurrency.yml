@@ -1,0 +1,27 @@
+name: support-issue
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+concurrency:
+  group: test
+  cancel-in-progress: true
+
+jobs:
+  pre-deploy:
+    runs-on: production
+    environment: approval-env
+    steps:
+      - run: echo Hello, world!
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: pre-deploy # ensure that we received manual approval
+    if: ${{ needs.pre-deploy.result == 'success' || (needs.pre-deploy.result == 'success' && cancelled()) }} # make sure that we don't cancel an in-progress deployment
+    environment: test_main
+    steps:
+      - name: deploy
+        run: echo deploy
+      - name: sleep
+        run: sleep 20
