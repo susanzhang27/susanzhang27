@@ -11,7 +11,7 @@ concurrency:
 jobs:
   pre-deploy:
     runs-on: ubuntu-latest
-    environment: production
+    environment: test_main
     steps:
       - run: echo Hello, world!
 
