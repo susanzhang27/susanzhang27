@@ -10,8 +10,8 @@ concurrency:
 
 jobs:
   pre-deploy:
-    runs-on: production
-    environment: approval-env
+    runs-on: ubuntu-latest
+    environment: production
     steps:
       - run: echo Hello, world!
 
