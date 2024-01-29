@@ -13,6 +13,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: pre-deploy # ensure that we received manual approval
     if: ${{ needs.pre-deploy.result == 'success' || (needs.pre-deploy.result == 'success' && cancelled()) }}
     environment: test_main
     steps:
