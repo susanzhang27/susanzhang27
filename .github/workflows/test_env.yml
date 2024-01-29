@@ -1,0 +1,22 @@
+name: test-env
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  pre-deploy:
+    runs-on: ubuntu-latest
+    environment: approval-env
+    steps:
+      - run: echo Hello, world!
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: pre-deploy # ensure that we received manual approval
+    environment: test_main
+    steps:
+      - name: deploy
+        run: echo deploy
+      - name: sleep
+        run: sleep 20
